@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h2 class="mt-2">{{ title }}</h2>
+    {% if plan|length == 0 %}
+        <p>Данных не найдено.</p>
+    {% else %}
+        <table class="table table-bordered table-hover">
+            <thead class="text-center table-primary">
+                <tr>
+                    <th width="10%">№ семестра</th>
+                    <th>Предмет</th>
+                    <th>Тип аттестации</th>
+                    <th width="20%">Лекционные часы</th>
+                    <th width="20%">Лабораторные часы</th>
+                </tr>
+            </thead>
+
+            <tbody class="text-center">
+            {% for p in plan %}
+                <tr>
+                    <td>{{ p[0] }}</td>
+                    <td>{{ p[1] }}</td>
+                    <td>{{ p[2] }}</td>
+                    <td>{{ p[3] }}</td>
+                    <td>{{ p[4] }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+{% endblock %}

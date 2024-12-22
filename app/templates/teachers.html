@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h2 class="mt-2">{{ title }}</h2>
+    {% if teachers|length == 0 %}
+        <p>Преподавателей не найдено.</p>
+    {% else %}
+        <table class="table table-bordered table-hover">
+            <thead class="text-center table-primary">
+                <tr>
+                    <th width="35%">ФИО</th>
+                    <th width="35%">Должность</th>
+                    <th width="25%">Кафедра</th>
+                </tr>
+            </thead>
+
+            <tbody class="text-center">
+                {% for key, values in teachers.items() %}
+                <tr>
+                    <td class="text-start">{{ key[0] }}</td>
+                    <td>{{ key[1] }}</td>
+                    <td>{% for value in values %}
+                        {{ value }} {{ " " }}
+                    {% endfor %}</td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+{% endblock %}

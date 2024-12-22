@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% from 'bootstrap5/form.html' import render_form %}
+{% block content %}
+
+    <div>
+        <ul class="list-group text-center mt-3">
+            <li class="m-1 rounded list-group-item list-group-item-warning">
+                Нельзя добавить группу в несуществующий поток!
+                <a href="{{ url_for('insertStreamForm') }}">
+                    Добавить новый поток
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container d-flex flex-column align-items-center">
+        <h2 class="text-center m-3">{{ title }}</h2>
+        <div class="w-50">
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <div class="d-flex flex-column justify-content-center mt-3">{{ render_form(form, method="POST", action="") }}</div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% from 'bootstrap5/form.html' import render_form %}
+
+{% block content %}
+
+    <div class="container d-flex flex-column align-items-center">
+        <h2 class="text-center m-3">{{ title }}</h2>
+        <div class="w-50">
+            <form method="POST" action="">
+                {{ form.hidden_tag() }}
+                <div class="d-flex flex-column justify-content-center mt-3">{{ render_form(form, method="POST", action="") }}</div>
+            </form>
+        </div>
+        <a href="{{ url_for('adminLoginForm') }}" class="d-flex justify-content-center m-2">Уже есть аккаунт? Войти</a>
+    </div>
+
+{% endblock %}

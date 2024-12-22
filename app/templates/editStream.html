@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h2 class="mt-2 mb-3">{{ title }}</h2>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">Добавить новый поток</p>
+                    <a href="{{ url_for('insertStreamForm') }}" class="btn btn-primary">Добавить</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">Удалить существующий поток</p>
+                    <a href="{{ url_for('deleteStreamForm') }}" class="btn btn-primary">Удалить</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

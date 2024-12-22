@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h2 class="mt-2">{{ title }}</h2>
+    {% if streams|length == 0 %}
+        <p>Потоков не найдено.</p>
+    {% else %}
+        <table class="table table-bordered table-hover">
+            <thead class="text-center">
+                <tr>
+                    <th width="5%">№</th>
+                    <th>Код направления</th>
+                    <th>Год поступления</th>
+                </tr>
+            </thead>
+
+            <tbody class="text-center">
+            {% for s in streams %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ s[0] }}</td>
+                    <td><a href="{{ url_for('updatePlanForm', dir=s[0], year=s[1]) }}">{{ s[1] }}</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+{% endblock %}

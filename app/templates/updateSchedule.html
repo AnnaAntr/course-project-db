@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h2 class="mt-2">{{ title }}</h2>
+    {% if groups|length == 0 %}
+        <p>Групп не найдено.</p>
+    {% else %}
+    <h5>Выберите группу</h5>
+    <div class="col-sm-1 text-center mt-2">
+        <ul class="list-group list-group-flush">
+            {% for g in groups %}
+                <li class="list-group-item"><a href="{{ url_for('updateScheduleForm', group=g[0])}}">{{ g[0] }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+{% endblock %}

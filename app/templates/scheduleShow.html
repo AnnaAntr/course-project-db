@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h2 class="mt-2">{{ title }}</h2>
+    {% if rasp|length == 0 %}
+        <p>Расписание не найдено.</p>
+    {% else %}
+        {% for r in rasp %}
+            <h6 class="p-1" style="background-color: #d3e1fc;">{{ r[2] }} {{ "| " }} {{ r[1] }} {{ "неделя" }}</h6>
+
+            <div class="p-1 mb-2">
+                <div><strong>{{ r[3] }} {{ "пара" }}</strong></div>
+                <div><em>&emsp;{{ r[4] }}</em></div>
+                <div>&emsp;{{ r[5] }}</div>
+                <div>&emsp;{{ r[6] }} {{ "," }} {{ r[7] }}</div>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}

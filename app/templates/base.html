@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% from 'bootstrap5/nav.html' import render_nav_item %}
+
+    <head>
+        {% block styles %}
+            {{ bootstrap.load_css() }}
+        {% endblock %}
+    </head>
+
+    <body class="p-3 m-2">
+        <div>
+            <ul class="nav nav-pills justify-content-center">
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="{{ url_for('index') }}">Главная</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('scheduleForm') }}">Расписание</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('directions') }}">Направления</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('teachers') }}">Преподаватели</a></li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Администрирование</a>
+                    <ul class="dropdown-menu">
+                        {% if not current_user.is_authenticated %}
+                            <li><a class="dropdown-item" href="{{ url_for('adminRegForm') }}">Регистрация</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('adminLoginForm') }}">Вход</a></li>
+                        {% else %}
+                            <li><a class="dropdown-item" href="{{ url_for('editStream') }}">Управление потоками</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('editGroup') }}">Управление группами</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('editTeacher') }}">Управление преподавателями</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('editSchedule') }}">Управление расписанием</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('editCourse') }}">Управление предметами</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('editEdPlan') }}">Управление учебным планом</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ url_for('adminLogout') }}">Выход</a></li>
+                        {% endif %}
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                    <ul class="list-group text-center mt-3">
+                    {% for category, message in messages %}
+                        <li class="m-1 rounded list-group-item list-group-item-{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+        {% block scripts %}
+            {{ bootstrap.load_js() }}
+        {% endblock %}
+    </body>
+</html>

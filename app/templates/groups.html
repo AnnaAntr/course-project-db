@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h2 class="mt-2">{{ title }}</h2>
+    {% if groups|length == 0 %}
+        <p>Групп не найдено.</p>
+    {% else %}
+        <table class="table table-bordered table-hover">
+            <thead class="text-center table-primary">
+                <tr>
+                    <th>Номер группы</th>
+                    <th>Текущий семестр</th>
+                    <th>Код направления</th>
+                    <th>Год поступления</th>
+                    <th>Кафедра</th>
+                </tr>
+            </thead>
+
+            <tbody class="text-center">
+            {% for g in groups %}
+                <tr>
+                    <td>{{ g[0] }}</td>
+                    <td>{{ g[1] }}</td>
+                    <td>{{ g[2] }}</td>
+                    <td>{{ g[3] }}</td>
+                    <td>{{ g[4] }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+{% endblock %}

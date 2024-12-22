@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h2 class="mt-2">{{ title }}</h2>
+    {% if directions|length == 0 %}
+        <p>Направлений не найдено.</p>
+    {% else %}
+        <table class="table table-bordered table-hover">
+            <thead class="text-center table-primary">
+                <tr>
+                    <th width="10%">Код</th>
+                    <th>Наименование</th>
+                    <th>Учебный план</th>
+                </tr>
+            </thead>
+
+            <tbody class="text-center">
+                {% for key, values in directions.items() %}
+                <tr>
+                    <td>{{ key[0] }}</td>
+                    <td class="text-start">{{ key[1] }}</td>
+                    <td>
+                        {% for value in values %}
+                            <a href="{{ url_for('edPlanShow', dir=key[0], year=value) }}">
+                                {{ value }} {{ " " }}
+                            </a>
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+{% endblock %}
