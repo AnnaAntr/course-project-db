@@ -24,7 +24,7 @@ def insertTeacherForm():
         name = form.name.data
         rec = form.rec_num.data
         pos = form.position.data or None
-        dep = dict(form.dep.choices).get(int(form.dep.data)) or None
+        dep = dict(form.dep.choices).get(int(form.dep.data))
         t = (name, rec,)
 
         if teachers is not None and t in teachers:
@@ -42,7 +42,8 @@ def insertTeacherForm():
                     cur.execute('UPDATE teacher '
                                 'SET position = %s '
                                 'WHERE emp_record_num = %s', (pos, rec,))
-                if dep is not None:
+
+                if dep != 'не выбрано':
                     cur.execute('INSERT INTO teacher_department '
                                 'VALUES (%s, %s)', (dep, rec))
 

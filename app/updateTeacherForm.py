@@ -32,6 +32,7 @@ def updateTeacherForm():
             pos = form.position.data or None
             ch = int(form.dep_ch.data)
             dep = dict(form.dep.choices).get(int(form.dep.data)) or None
+            print(new_name, pos, ch, dep)
 
             with psycopg.connect(host=app.config['DB_SERVER'], user=app.config['DB_USER'],
                                  password=app.config['DB_PASSWORD'], dbname=app.config['DB_NAME']) as con:
@@ -41,6 +42,7 @@ def updateTeacherForm():
                     cur.execute('UPDATE teacher '
                                 'SET full_name = %s '
                                 'WHERE full_name = %s', (new_name, name,))
+                    name = new_name
 
                 if pos is not None:
                     cur.execute('UPDATE teacher '

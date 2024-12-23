@@ -30,15 +30,13 @@ def deleteScheduleForm():
             with psycopg.connect(host=app.config['DB_SERVER'], user=app.config['DB_USER'],
                                  password=app.config['DB_PASSWORD'], dbname=app.config['DB_NAME']) as con:
                 cur = con.cursor()
-                wday, num, wtype, aud, corp = cur.execute('SELECT week_day, class_number, week_type, room_number, building_address '
-                                                          'FROM group_class '
-                                                          'WHERE group_number = %s', (gr,))
-                cur.execute('DELETE FROM group_class '
-                            'WHERE group_number = %s', (gr,))
-
                 cur.execute('DELETE FROM class '
                             'WHERE (week_day, class_number, week_type, room_number, building_address) IN '
-                            '(%s, %s, %s, %s, %s)', (wday, num, wtype, aud, corp,))
+                            '('
+                                'SELECT week_day, class_number, week_type, room_number, building_address '
+                                'FROM group_class '
+                                'WHERE group_number = %s'
+                            ')', (gr,))
 
             flash('Данные успешно обновлены', 'success')
             redirect(url_for('deleteScheduleForm'))

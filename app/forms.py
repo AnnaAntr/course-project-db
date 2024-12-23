@@ -17,8 +17,7 @@ class AdminLoginForm(FlaskForm):
 class ScheduleForm(FlaskForm):
     group = SelectField('Группа', coerce=int, default=0)
     teacher = SelectField('Преподаватель', coerce=int, default=0)
-    corp = SelectField('Корпус', coerce=int, default=0)
-    aud = SelectField('Аудитория', coerce=int, default=0)
+    aud = SelectField('Корпус и аудитория', coerce=int, default=0)
     submit = SubmitField('Показать')
 
 
@@ -86,9 +85,8 @@ class UpdateScheduleForm(FlaskForm):
     pare = SelectField('Пара', coerce=int, default=0)
     wtype = SelectField('Тип недели', coerce=int, choices=[(0, 'не выбрано'), (1, 'Четная'), (2, 'Нечетная')], default=0)
     wday = SelectField('День недели', coerce=int, choices=[(0, 'не выбрано'), (1, 'Понедельник'), (2, 'Вторник'), (3, 'Среда'), (4, 'Четверг'), (5, 'Пятница'), (6, 'Суббота')], default=0)
-    num = IntegerField('Номер пары', [validators.NumberRange(min=1, max=6)])
-    corp = SelectField('Корпус', coerce=int, default=0)
-    aud = SelectField('Аудитория', coerce=int, default=0)
+    num = IntegerField('Номер пары', [validators.NumberRange(min=1, max=6), validators.optional()])
+    aud = SelectField('Корпус и аудитория', coerce=int, default=0)
     course = SelectField('Предмет', coerce=int, default=0)
     teacher = SelectField('Преподаватель', coerce=int, default=0)
     submit = SubmitField('Сохранить')
@@ -99,8 +97,7 @@ class InsertScheduleForm(FlaskForm):
     wtype = SelectField('Тип недели', coerce=int, choices=[(0, 'не выбрано'), (1, 'Четная'), (2, 'Нечетная')], default=0)
     wday = SelectField('День недели', coerce=int, choices=[(0, 'не выбрано'), (1, 'Понедельник'), (2, 'Вторник'), (3, 'Среда'), (4, 'Четверг'), (5, 'Пятница'), (6, 'Суббота')], default=0)
     num = IntegerField('Номер пары', [validators.NumberRange(min=1, max=6), validators.InputRequired()])
-    corp = SelectField('Корпус', coerce=int, default=0)
-    aud = SelectField('Аудитория', coerce=int, default=0)
+    aud = SelectField('Корпус и аудитория', coerce=int, default=0)
     course = SelectField('Предмет', coerce=int, default=0)
     teacher = SelectField('Преподаватель', coerce=int, default=0)
     submit = SubmitField('Добавить')
