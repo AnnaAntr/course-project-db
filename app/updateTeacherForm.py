@@ -79,8 +79,6 @@ def updateTeacherForm():
                         flash('Выберите действие для изменения кафедры', 'danger')
                         redirect(url_for('updateTeacherForm'))
 
-                con.commit()
-
             flash('Данные успешно обновлены', 'success')
             redirect(url_for('updateTeacherForm'))
 
