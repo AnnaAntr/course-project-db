@@ -32,7 +32,6 @@ def updateTeacherForm():
             pos = form.position.data or None
             ch = int(form.dep_ch.data)
             dep = dict(form.dep.choices).get(int(form.dep.data)) or None
-            print(new_name, pos, ch, dep)
 
             with psycopg.connect(host=app.config['DB_SERVER'], user=app.config['DB_USER'],
                                  password=app.config['DB_PASSWORD'], dbname=app.config['DB_NAME']) as con:
@@ -75,7 +74,8 @@ def updateTeacherForm():
                                         'FROM teacher '
                                         'WHERE full_name = %s'
                                     ')', (dep, name,))
-		    else:
+
+                    else:
                         flash('Выберите действие для изменения кафедры', 'danger')
                         redirect(url_for('updateTeacherForm'))
 
