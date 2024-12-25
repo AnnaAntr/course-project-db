@@ -75,6 +75,10 @@ def updateTeacherForm():
                                         'FROM teacher '
                                         'WHERE full_name = %s'
                                     ')', (dep, name,))
+		    else:
+                        flash('Выберите действие для изменения кафедры', 'danger')
+                        redirect(url_for('updateTeacherForm'))
+
                 con.commit()
 
             flash('Данные успешно обновлены', 'success')

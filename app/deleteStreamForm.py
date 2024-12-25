@@ -34,7 +34,7 @@ def deleteStreamForm():
             with psycopg.connect(host=app.config['DB_SERVER'], user=app.config['DB_USER'],
                                  password=app.config['DB_PASSWORD'], dbname=app.config['DB_NAME']) as con:
                 cur = con.cursor()
-                cur.execute('SELECT * FROM class '
+                cur.execute('DELETE FROM class '
                             'WHERE (week_day, class_number, week_type, room_number, building_address) IN '
                             '('
                                 'SELECT week_day, class_number, week_type, room_number, building_address '
